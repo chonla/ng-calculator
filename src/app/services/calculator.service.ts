@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class CalculatorService {
@@ -7,9 +9,19 @@ export class CalculatorService {
   private operator: string;
   private op: number;
   private is_error: boolean;
+  private source: BehaviorSubject<string>;
 
   constructor() {
+    this.source = new BehaviorSubject<string>('0');
     this.reset();
+  }
+
+  private emitChanges() {
+    this.source.next(this.operand[this.op]);
+  }
+
+  operationChanges(): Observable<any> {
+    return this.source.asObservable();
   }
 
   value(): string {
@@ -30,6 +42,7 @@ export class CalculatorService {
         this.operand[this.op] += v;
       }
     }
+    this.emitChanges();
   }
 
   is_digit(v: string) {
@@ -41,22 +54,27 @@ export class CalculatorService {
     this.operator = '';
     this.op = 0;
     this.is_error = false;
+    this.emitChanges();
   }
 
   add() {
     this.operator = '+';
+    this.emitChanges();
   }
 
   subtract() {
     this.operator = '-';
+    this.emitChanges();
   }
 
   multiply() {
     this.operator = '*';
+    this.emitChanges();
   }
 
   divide() {
     this.operator = '/';
+    this.emitChanges();
   }
 
   solve() {
@@ -70,5 +88,6 @@ export class CalculatorService {
       this.reset();
     }
     this.operand[0] = result.toString();
+    this.emitChanges();
   }
 }
