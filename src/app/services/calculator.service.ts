@@ -50,7 +50,7 @@ export class CalculatorService {
     if ('' !== this.operator && 0 === this.op) {
       this.op = 1;
     }
-    if (this.is_digit(v)) {
+    if (this.isDigit(v)) {
       if ('0' === this.operand[this.op]) {
         this.operand[this.op] = v;
       } else {
@@ -69,7 +69,7 @@ export class CalculatorService {
     this.emitChanges();
   }
 
-  is_digit(v: string) {
+  isDigit(v: string) {
     return (v.length === 1) && ('1234567890'.indexOf(v) >= 0);
   }
 
@@ -101,6 +101,22 @@ export class CalculatorService {
     this.emitChanges();
   }
 
+  isDecimal(n: string) {
+    return n.indexOf('.') >= 0;
+  }
+
+  trimResult(n: string) {
+    if (this.max_len > 0) {
+      var f = n.split('.');
+      if (f[0].length > this.max_len) {
+        return n;
+      }
+      const fn = f[1].substr(0, this.max_len - f[0].length);
+      n = `${f[0]}.${fn}`;
+    }
+    return n;
+  }
+
   solve() {
     var result = '';
     if ('/' === this.operator && '0' === this.operand[1]) {
@@ -112,9 +128,18 @@ export class CalculatorService {
         return;
       }
       result = eval(`${this.operand[0]}${this.operator}${this.operand[1]}`).toString();
-      if (this.max_len > 0 && result.length > this.max_len) {
-        this.raise('overflow');
-        return;
+
+      if (this.isDecimal(result)) {
+        result = this.trimResult(result);
+        if (this.max_len > 0 && result.replace('.', '').length > this.max_len) {
+          this.raise('overflow');
+          return;
+        }
+      } else {
+        if (this.max_len > 0 && result.length > this.max_len) {
+          this.raise('overflow');
+          return;
+        }
       }
       this.reset();
     }

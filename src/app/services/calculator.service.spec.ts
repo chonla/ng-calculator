@@ -145,6 +145,19 @@ describe('CalculatorService', () => {
     });
   });
 
+  describe('Decimal', () => {
+    it('should trim result to max length with extra period', () => {
+      service.setMaxLength(3);
+      service.input('2');
+      service.input('2');
+      service.divide();
+      service.input('7');
+      service.solve();
+      const result = service.value();
+      expect(result).toBe('3.14');
+    });
+  });
+
   describe('Error', () => {
     it('should give divided by zero error', () => {
       service.divide();
