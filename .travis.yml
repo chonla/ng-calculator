@@ -1,0 +1,20 @@
+language: node_js
+node_js:
+  - "9"
+branches:
+  only:
+    - master
+sudo: required
+dist: trusty
+cache:
+  directories:
+    - node_modules
+addons:
+  chrome: stable
+
+script:
+  - npm run test:headless
+  - npm run build
+
+after_success:
+  - firebase deploy --token $FIREBASE_TOKEN --project $PROJECT_ID
