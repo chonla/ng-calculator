@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { CalculatorComponent } from './components/calculator/calculator.component';
 import { CalculatorService } from './services/calculator.service';
 import { OperatorPipe } from './pipes/operator.pipe';
+import { GithubComponent } from './components/github/github.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CalculatorComponent,
-    OperatorPipe
+    OperatorPipe,
+    GithubComponent
   ],
   imports: [
     BrowserModule

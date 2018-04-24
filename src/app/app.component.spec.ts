@@ -3,6 +3,7 @@ import { AppComponent } from './app.component';
 import { CalculatorComponent } from './components/calculator/calculator.component';
 import { CalculatorService } from './services/calculator.service';
 import { OperatorPipe } from './pipes/operator.pipe';
+import { GithubComponent } from './components/github/github.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -10,7 +11,8 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent,
         CalculatorComponent,
-        OperatorPipe
+        OperatorPipe,
+        GithubComponent
       ],
       providers: [
         CalculatorService
