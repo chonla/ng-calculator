@@ -1,47 +1,57 @@
 <div class="display">{{ result }}</div>
-<div class="row">
-  <div class="col-9">
-    <div class="row button-row">
-      <div class="col-4">
-        <button class="btn btn-secondary button-digit" (click)="input('7')">7</button>
-      </div>
-      <div class="col-4">
-        <button class="btn btn-secondary button-digit" (click)="input('8')">8</button>
-      </div>
-      <div class="col-4">
-        <button class="btn btn-secondary button-digit" (click)="input('9')">9</button>
-      </div>
-    </div>
-    <div class="row button-row">
-      <div class="col-4">
-        <button class="btn btn-secondary button-digit" (click)="input('4')">4</button>
-      </div>
-      <div class="col-4">
-        <button class="btn btn-secondary button-digit" (click)="input('5')">5</button>
-      </div>
-      <div class="col-4">
-        <button class="btn btn-secondary button-digit" (click)="input('6')">6</button>
-      </div>
-    </div>
-    <div class="row button-row">
-      <div class="col-4">
-        <button class="btn btn-secondary button-digit" (click)="input('1')">1</button>
-      </div>
-      <div class="col-4">
-        <button class="btn btn-secondary button-digit" (click)="input('2')">2</button>
-      </div>
-      <div class="col-4">
-        <button class="btn btn-secondary button-digit" (click)="input('3')">3</button>
-      </div>
-    </div>
-    <div class="row button-row">
-      <button class="btn btn-secondary button-digit" (click)="input('0')">0</button>
-    </div>
+<div class="row button-row">
+  <div class="col-3">
+    <button class="btn btn-secondary button-digit" (click)="input('7')">7</button>
+  </div>
+  <div class="col-3">
+    <button class="btn btn-secondary button-digit" (click)="input('8')">8</button>
+  </div>
+  <div class="col-3">
+    <button class="btn btn-secondary button-digit" (click)="input('9')">9</button>
+  </div>
+  <div class="col-3">
+    <button class="btn btn-secondary button-digit" (click)="divide()">/</button>
   </div>
 </div>
-<button (click)="add()">+</button>
-<button (click)="subtract()">-</button>
-<button (click)="multiply()">*</button>
-<button (click)="divide()">/</button>
-<button (click)="solve()">=</button>
-<button (click)="clear()">C</button>
+<div class="row button-row">
+  <div class="col-3">
+    <button class="btn btn-secondary button-digit" (click)="input('4')">4</button>
+  </div>
+  <div class="col-3">
+    <button class="btn btn-secondary button-digit" (click)="input('5')">5</button>
+  </div>
+  <div class="col-3">
+    <button class="btn btn-secondary button-digit" (click)="input('6')">6</button>
+  </div>
+  <div class="col-3">
+    <button class="btn btn-secondary button-digit" (click)="multiply()">*</button>
+  </div>
+</div>
+<div class="row button-row">
+  <div class="col-3">
+    <button class="btn btn-secondary button-digit" (click)="input('1')">1</button>
+  </div>
+  <div class="col-3">
+    <button class="btn btn-secondary button-digit" (click)="input('2')">2</button>
+  </div>
+  <div class="col-3">
+    <button class="btn btn-secondary button-digit" (click)="input('3')">3</button>
+  </div>
+  <div class="col-3">
+    <button class="btn btn-secondary button-digit" (click)="subtract()">-</button>
+  </div>
+</div>
+<div class="row button-row">
+  <div class="col-3">
+    <button class="btn btn-secondary button-digit" (click)="input('0')">0</button>
+  </div>
+  <div class="col-3">
+    <button class="btn btn-secondary button-digit" (click)="clear()">C</button>
+  </div>
+  <div class="col-3">
+    <button class="btn btn-secondary button-digit" (click)="solve()">=</button>
+  </div>
+  <div class="col-3">
+    <button class="btn btn-secondary button-digit" (click)="add()">+</button>
+  </div>
+</div>
