@@ -54,7 +54,6 @@ export class CalculatorService {
       if ('0' === this.operand[this.op]) {
         this.operand[this.op] = v;
       } else {
-        console.log(this.max_len);
         if (this.max_len === 0 || (this.max_len > 0 && this.operand[this.op].length < this.max_len)) {
           this.operand[this.op] += v;
         }
