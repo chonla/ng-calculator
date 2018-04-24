@@ -10,10 +10,13 @@ export class CalculatorService {
   private op: number;
   private max_len: number;
   private is_error: boolean;
-  private source: BehaviorSubject<string>;
+  private source: BehaviorSubject<any>;
 
   constructor() {
-    this.source = new BehaviorSubject<string>('0');
+    this.source = new BehaviorSubject<any>({
+      'result': '0',
+      'operator': ''
+    });
     this.reset();
   }
 
@@ -22,7 +25,10 @@ export class CalculatorService {
   }
 
   private emitChanges() {
-    this.source.next(this.operand[this.op]);
+    this.source.next({
+      'result': this.operand[this.op],
+      'operator': this.operator
+    });
   }
 
   operationChanges(): Observable<any> {

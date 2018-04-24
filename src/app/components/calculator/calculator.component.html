@@ -1,5 +1,9 @@
 <div class="calculator">
-  <div class="display">{{ result }}</div>
+  <div class="display">
+    {{ result }}
+    <div class="operator float-right" [innerHTML]="operator | operator">
+    </div>
+  </div>
   <div class="row button-row">
     <div class="col-3">
       <button class="btn btn-secondary button-digit" (click)="input('7')">7</button>

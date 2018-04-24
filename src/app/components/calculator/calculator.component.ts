@@ -13,11 +13,13 @@ export class CalculatorComponent implements OnInit, OnDestroy {
   private subscription$: Subscription;
 
   public result: string;
+  public operator: string;
 
   constructor(private calc: CalculatorService) {
     this.observable = calc.operationChanges();
     this.observable.subscribe(val => {
-      this.result = val;
+      this.result = val['result'];
+      this.operator = val['operator'];
     });
   }
 
