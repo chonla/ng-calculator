@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CalculatorComponent } from './calculator.component';
 import { CalculatorService } from '../../services/calculator.service';
+import { OperatorPipe } from '../../pipes/operator.pipe';
 
 describe('CalculatorComponent', () => {
   let component: CalculatorComponent;
@@ -9,7 +10,10 @@ describe('CalculatorComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [CalculatorComponent],
+      declarations: [
+        CalculatorComponent,
+        OperatorPipe
+      ],
       providers: [CalculatorService]
     })
       .compileComponents();

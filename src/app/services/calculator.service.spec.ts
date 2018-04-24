@@ -136,6 +136,13 @@ describe('CalculatorService', () => {
       const result = service.value();
       expect(result).toBe('579');
     });
+
+    it('should give the result of first operand if there is no operation', () => {
+      service.input('1');
+      service.solve();
+      const result = service.value();
+      expect(result).toBe('1');
+    });
   });
 
   describe('Error', () => {

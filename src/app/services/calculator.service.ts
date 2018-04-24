@@ -105,6 +105,10 @@ export class CalculatorService {
       this.raise('div-by-0');
       return;
     } else {
+      if ('' === this.operator) {
+        this.emitChanges();
+        return;
+      }
       result = eval(`${this.operand[0]}${this.operator}${this.operand[1]}`).toString();
       if (this.max_len > 0 && result.length > this.max_len) {
         this.raise('overflow');
