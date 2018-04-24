@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { CalculatorService } from '../../services/calculator.service';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
@@ -22,6 +22,32 @@ export class CalculatorComponent implements OnInit, OnDestroy {
       this.result = val['result'];
       this.operator = val['operator'];
     });
+  }
+
+  @HostListener('window:keyup', ['$event'])
+  keyPressHandler(ev: KeyboardEvent) {
+    const handlerMap = {
+      '0': () => this.input('0'),
+      '1': () => this.input('1'),
+      '2': () => this.input('2'),
+      '3': () => this.input('3'),
+      '4': () => this.input('4'),
+      '5': () => this.input('5'),
+      '6': () => this.input('6'),
+      '7': () => this.input('7'),
+      '8': () => this.input('8'),
+      '9': () => this.input('9'),
+      '+': () => this.add(),
+      '-': () => this.subtract(),
+      '*': () => this.multiply(),
+      '/': () => this.divide(),
+      '=': () => this.solve(),
+      'Enter': () => this.solve(),
+      'Escape': () => this.clear()
+    }
+    if (handlerMap.hasOwnProperty(ev.key)) {
+      handlerMap[ev.key]();
+    }
   }
 
   input(v: string) {
