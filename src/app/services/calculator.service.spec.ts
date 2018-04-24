@@ -197,5 +197,29 @@ describe('CalculatorService', () => {
       const result = service.value();
       expect(result).toBe('3');
     });
+
+    it('should be overflown if input digit more than max length', () => {
+      service.setMaxLength(4);
+      service.input('1');
+      service.input('1');
+      service.input('1');
+      service.input('1');
+      service.input('1');
+      const result = service.value();
+      expect(result).toBe('overflow');
+    });
+
+    it('should be overflown if number of digit in result is more than max length', () => {
+      service.setMaxLength(4);
+      service.input('9');
+      service.input('9');
+      service.input('9');
+      service.input('9');
+      service.add();
+      service.input('1');
+      service.solve();
+      const result = service.value();
+      expect(result).toBe('overflow');
+    });
   });
 });

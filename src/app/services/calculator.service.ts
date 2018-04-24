@@ -8,12 +8,17 @@ export class CalculatorService {
   private operand: string[];
   private operator: string;
   private op: number;
+  private max_len: number;
   private is_error: boolean;
   private source: BehaviorSubject<string>;
 
   constructor() {
     this.source = new BehaviorSubject<string>('0');
     this.reset();
+  }
+
+  setMaxLength(l: number) {
+    this.max_len = l;
   }
 
   private emitChanges() {
@@ -41,7 +46,18 @@ export class CalculatorService {
       } else {
         this.operand[this.op] += v;
       }
+
+      if (this.max_len > 0 && this.operand[this.op].length > this.max_len) {
+        this.raise('overflow');
+      }
     }
+    this.emitChanges();
+  }
+
+  raise(msg: string) {
+    this.reset();
+    this.operand[0] = msg;
+    this.is_error = true;
     this.emitChanges();
   }
 
@@ -80,14 +96,17 @@ export class CalculatorService {
   solve() {
     var result = '';
     if ('/' === this.operator && '0' === this.operand[1]) {
-      result = 'div-by-0';
-      this.reset();
-      this.is_error = true;
+      this.raise('div-by-0');
+      return;
     } else {
-      result = eval(`${this.operand[0]}${this.operator}${this.operand[1]}`);
+      result = eval(`${this.operand[0]}${this.operator}${this.operand[1]}`).toString();
+      if (this.max_len > 0 && result.length > this.max_len) {
+        this.raise('overflow');
+        return;
+      }
       this.reset();
     }
-    this.operand[0] = result.toString();
+    this.operand[0] = result;
     this.emitChanges();
   }
 }
