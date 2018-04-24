@@ -12,6 +12,9 @@ cache:
 addons:
   chrome: stable
 
+before_script:
+  - npm install -g firebase-tools
+
 script:
   - npm run test:headless
   - npm run build
