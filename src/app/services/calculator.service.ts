@@ -17,10 +17,14 @@ export class CalculatorService {
       'result': '0',
       'operator': ''
     });
+    this.max_len = 0;
     this.reset();
   }
 
   setMaxLength(l: number) {
+    if (l < 0) {
+      l = 0;
+    }
     this.max_len = l;
   }
 
@@ -50,11 +54,10 @@ export class CalculatorService {
       if ('0' === this.operand[this.op]) {
         this.operand[this.op] = v;
       } else {
-        this.operand[this.op] += v;
-      }
-
-      if (this.max_len > 0 && this.operand[this.op].length > this.max_len) {
-        this.raise('overflow');
+        console.log(this.max_len);
+        if (this.max_len === 0 || (this.max_len > 0 && this.operand[this.op].length < this.max_len)) {
+          this.operand[this.op] += v;
+        }
       }
     }
     this.emitChanges();

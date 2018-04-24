@@ -205,15 +205,15 @@ describe('CalculatorService', () => {
       expect(result).toBe('3');
     });
 
-    it('should be overflown if input digit more than max length', () => {
+    it('should not be overflown if input digit more than max length but result will be limited to maxlength', () => {
       service.setMaxLength(4);
       service.input('1');
-      service.input('1');
-      service.input('1');
-      service.input('1');
-      service.input('1');
+      service.input('2');
+      service.input('3');
+      service.input('4');
+      service.input('5');
       const result = service.value();
-      expect(result).toBe('overflow');
+      expect(result).toBe('1234');
     });
 
     it('should be overflown if number of digit in result is more than max length', () => {
