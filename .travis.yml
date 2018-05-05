@@ -17,7 +17,7 @@ before_script:
   - npm install -g codecov
 
 script:
-  - npm run test:headless
+  - npm run test:headless --code-coverage
   - codecov -t $CODECOV_TOKEN
   - npm run build
 
