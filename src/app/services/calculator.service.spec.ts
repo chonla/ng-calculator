@@ -291,7 +291,7 @@ describe('CalculatorService', () => {
       expect(result).toBe('overflow');
     });
 
-    xit('shoud be overflown if the total digits in result is greater than max length, decimal period exclusive', () => {
+    it('shoud be overflown if the total digits in result is greater than max length, decimal period exclusive', () => {
       service.setMaxLength(4);
       service.input('9');
       service.input('9');
