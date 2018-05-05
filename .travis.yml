@@ -18,10 +18,8 @@ before_script:
 
 script:
   - npm run test --code-coverage
-  - ls
-  - ls coverage/
-  - codecov -t $CODECOV_TOKEN
   - npm run build
 
 after_success:
+  - codecov -t $CODECOV_TOKEN
   - firebase deploy --token $FIREBASE_TOKEN --project $PROJECT_ID
