@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject ,  Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable()
 export class CalculatorService {
@@ -111,7 +111,11 @@ export class CalculatorService {
         return n;
       }
       const fn = f[1].substr(0, this.max_len - f[0].length);
-      n = `${f[0]}.${fn}`;
+      if (fn !== '') {
+        n = `${f[0]}.${fn}`;
+      } else {
+        n = f[0];
+      }
     }
     return n;
   }

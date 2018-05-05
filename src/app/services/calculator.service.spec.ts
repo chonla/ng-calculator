@@ -167,6 +167,19 @@ describe('CalculatorService', () => {
       const result = service.value();
       expect(result).toBe('3.14');
     });
+
+    it('should not show decimal period if there is no decimal after period', () => {
+      service.setMaxLength(4);
+      service.input('9');
+      service.input('9');
+      service.input('9');
+      service.input('9');
+      service.divide();
+      service.input('7');
+      service.solve();
+      const result = service.value();
+      expect(result).toBe('1428');
+    });
   });
 
   describe('Decimal Overflow handling', () => {
@@ -273,6 +286,24 @@ describe('CalculatorService', () => {
       service.input('9');
       service.add();
       service.input('1');
+      service.solve();
+      const result = service.value();
+      expect(result).toBe('overflow');
+    });
+
+    xit('shoud be overflown if the total digits in result is greater than max length, decimal period exclusive', () => {
+      service.setMaxLength(4);
+      service.input('9');
+      service.input('9');
+      service.input('9');
+      service.divide();
+      service.input('7'); // 142.7
+      service.solve();
+      service.add();
+      service.input('9');
+      service.input('9');
+      service.input('9');
+      service.input('9');
       service.solve();
       const result = service.value();
       expect(result).toBe('overflow');
