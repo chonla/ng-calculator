@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/chonla/ng-calculator.svg?branch=master)](https://travis-ci.org/chonla/ng-calculator)
+[![Build Status](https://travis-ci.org/chonla/ng-calculator.svg?branch=master)](https://travis-ci.org/chonla/ng-calculator) [![codecov](https://codecov.io/gh/chonla/ng-calculator/branch/master/graph/badge.svg)](https://codecov.io/gh/chonla/ng-calculator)
 
 # Simple Calculator
 
