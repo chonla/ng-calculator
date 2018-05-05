@@ -14,9 +14,11 @@ addons:
 
 before_script:
   - npm install -g firebase-tools
+  - npm install -g codecov
 
 script:
   - npm run test:headless
+  - codecov --token $CODECOV_TOKEN
   - npm run build
 
 after_success:
