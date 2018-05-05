@@ -18,6 +18,7 @@ before_script:
 
 script:
   - npm run test:headless --code-coverage
+  - ls
   - codecov -t $CODECOV_TOKEN
   - npm run build
 
