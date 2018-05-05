@@ -13,6 +13,17 @@ describe('CalculatorService', () => {
     service = TestBed.get(CalculatorService);
   });
 
+  describe('Setting', () => {
+    it('should set no max length if max length is negative', () => {
+      service.setMaxLength(-1);
+      service.input('1');
+      service.input('2');
+      service.input('3');
+      const result = service.value();
+      expect(result).toBe('123');
+    });
+  });
+
   describe('Operand 1', () => {
     it('should be created', () => {
       expect(service).toBeTruthy();
@@ -155,6 +166,31 @@ describe('CalculatorService', () => {
       service.solve();
       const result = service.value();
       expect(result).toBe('3.14');
+    });
+  });
+
+  describe('Decimal Overflow handling', () => {
+    it('should not trim result if max length is 0', () => {
+      const result = service.trimResult('12345678901234567890');
+      expect(result).toBe('12345678901234567890');
+    });
+
+    it('should not trim result if there is no decimal period even max length if set', () => {
+      service.setMaxLength(3);
+      const result = service.trimResult('12345678901234567890');
+      expect(result).toBe('12345678901234567890');
+    });
+
+    it('should not trim result if number of digit before decimal period is greater than max length', () => {
+      service.setMaxLength(3);
+      const result = service.trimResult('12345678901234.567890');
+      expect(result).toBe('12345678901234.567890');
+    });
+
+    it('should trim if the number of digit before decimal is shorter than max length', () => {
+      service.setMaxLength(3);
+      const result = service.trimResult('12.345678901234567890');
+      expect(result).toBe('12.3');
     });
   });
 
