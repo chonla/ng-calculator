@@ -78,10 +78,12 @@ describe('CalculatorComponent', () => {
   });
 
   it('should trigger input a number', () => {
-    var ev = new KeyboardEvent('window:keyup', { key: '0' });
-    component.keyPressHandler(ev);
+    for (let i = 0; i <= 9; i++) {
+      var ev = new KeyboardEvent('window:keyup', { key: `${i}` });
+      component.keyPressHandler(ev);
 
-    expect(calculatorServiceSpy.input).toHaveBeenCalledWith('0');
+      expect(calculatorServiceSpy.input).toHaveBeenCalledWith(`${i}`);
+    }
   });
 
   it('should trigger add', () => {
