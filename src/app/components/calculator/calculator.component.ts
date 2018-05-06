@@ -17,7 +17,7 @@ export class CalculatorComponent implements OnInit, OnDestroy {
   constructor(private calc: CalculatorService) {
     this.calc.setMaxLength(8);
     this.observable = this.calc.operationChanges();
-    this.observable.subscribe(val => {
+    this.subscription$ = this.observable.subscribe(val => {
       this.result = val['result'];
       this.operator = val['operator'];
     });

@@ -148,5 +148,4 @@ describe('CalculatorComponent', () => {
     expect(calculatorServiceSpy.reset).not.toHaveBeenCalled();
     expect(calculatorServiceSpy.solve).not.toHaveBeenCalled();
   });
-
 });
