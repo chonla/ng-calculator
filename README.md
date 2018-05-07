@@ -2,7 +2,7 @@
 
 # Simple Calculator
 
-A simple calculator made with Angular and deployed on Firebase. All done with TravisCI.
+A simple calculator made with Angular 6 and deployed on Firebase. All done with TravisCI.
 
 ## Demo
 
