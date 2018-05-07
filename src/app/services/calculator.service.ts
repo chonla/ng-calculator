@@ -106,7 +106,7 @@ export class CalculatorService {
 
   trimResult(n: string) {
     if (this.max_len > 0) {
-      var f = n.split('.');
+      const f = n.split('.');
       if (f[0].length > this.max_len) {
         return n;
       }
@@ -121,7 +121,7 @@ export class CalculatorService {
   }
 
   solve() {
-    var result = '';
+    let result = '';
     if ('/' === this.operator && '0' === this.operand[1]) {
       this.raise('div-by-0');
       return;

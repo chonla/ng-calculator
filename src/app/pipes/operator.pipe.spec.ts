@@ -9,19 +9,19 @@ describe('OperatorPipe', () => {
   }));
 
   it('should return safe html if defined', () => {
-    var domSanitizer = jasmine.createSpyObj('domSanitizer', ['bypassSecurityTrustHtml']);
+    const domSanitizer = jasmine.createSpyObj('domSanitizer', ['bypassSecurityTrustHtml']);
     const pipe = new OperatorPipe(domSanitizer);
 
-    var result = pipe.transform('*');
+    const result = pipe.transform('*');
 
     expect(domSanitizer.bypassSecurityTrustHtml).toHaveBeenCalledWith('&times;');
   });
 
   it('should return blank if not defined', () => {
-    var domSanitizer = jasmine.createSpyObj('domSanitizer', ['bypassSecurityTrustHtml']);
+    const domSanitizer = jasmine.createSpyObj('domSanitizer', ['bypassSecurityTrustHtml']);
     const pipe = new OperatorPipe(domSanitizer);
 
-    var result = pipe.transform('<');
+    const result = pipe.transform('<');
 
     expect(domSanitizer.bypassSecurityTrustHtml).toHaveBeenCalledWith('&nbsp;');
   });

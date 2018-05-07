@@ -79,7 +79,7 @@ describe('CalculatorComponent', () => {
 
   it('should trigger input a number', () => {
     for (let i = 0; i <= 9; i++) {
-      var ev = new KeyboardEvent('window:keyup', { key: `${i}` });
+      const ev = new KeyboardEvent('window:keyup', { key: `${i}` });
       component.keyPressHandler(ev);
 
       expect(calculatorServiceSpy.input).toHaveBeenCalledWith(`${i}`);
@@ -87,7 +87,7 @@ describe('CalculatorComponent', () => {
   });
 
   it('should trigger add', () => {
-    var ev = new KeyboardEvent('window:keyup', { key: '+' });
+    const ev = new KeyboardEvent('window:keyup', { key: '+' });
     component.keyPressHandler(ev);
 
     expect(calculatorServiceSpy.add).toHaveBeenCalled();
@@ -95,49 +95,49 @@ describe('CalculatorComponent', () => {
 
 
   it('should trigger subtract', () => {
-    var ev = new KeyboardEvent('window:keyup', { key: '-' });
+    const ev = new KeyboardEvent('window:keyup', { key: '-' });
     component.keyPressHandler(ev);
 
     expect(calculatorServiceSpy.subtract).toHaveBeenCalled();
   });
 
   it('should trigger multiply', () => {
-    var ev = new KeyboardEvent('window:keyup', { key: '*' });
+    const ev = new KeyboardEvent('window:keyup', { key: '*' });
     component.keyPressHandler(ev);
 
     expect(calculatorServiceSpy.multiply).toHaveBeenCalled();
   });
 
   it('should trigger divide', () => {
-    var ev = new KeyboardEvent('window:keyup', { key: '/' });
+    const ev = new KeyboardEvent('window:keyup', { key: '/' });
     component.keyPressHandler(ev);
 
     expect(calculatorServiceSpy.divide).toHaveBeenCalled();
   });
 
   it('should trigger reset', () => {
-    var ev = new KeyboardEvent('window:keyup', { key: 'Escape' });
+    const ev = new KeyboardEvent('window:keyup', { key: 'Escape' });
     component.keyPressHandler(ev);
 
     expect(calculatorServiceSpy.reset).toHaveBeenCalled();
   });
 
   it('should trigger solve', () => {
-    var ev = new KeyboardEvent('window:keyup', { key: '=' });
+    const ev = new KeyboardEvent('window:keyup', { key: '=' });
     component.keyPressHandler(ev);
 
     expect(calculatorServiceSpy.solve).toHaveBeenCalled();
   });
 
   it('should also trigger solve when press Enter', () => {
-    var ev = new KeyboardEvent('window:keyup', { key: 'Enter' });
+    const ev = new KeyboardEvent('window:keyup', { key: 'Enter' });
     component.keyPressHandler(ev);
 
     expect(calculatorServiceSpy.solve).toHaveBeenCalled();
   });
 
   it('should do nothing when press unmapped key', () => {
-    var ev = new KeyboardEvent('window:keyup', { key: ']' });
+    const ev = new KeyboardEvent('window:keyup', { key: ']' });
     component.keyPressHandler(ev);
 
     expect(calculatorServiceSpy.input).not.toHaveBeenCalled();

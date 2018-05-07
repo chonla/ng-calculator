@@ -43,7 +43,7 @@ export class CalculatorComponent implements OnInit, OnDestroy {
       '=': () => this.solve(),
       'Enter': () => this.solve(),
       'Escape': () => this.clear()
-    }
+    };
     if (handlerMap.hasOwnProperty(ev.key)) {
       handlerMap[ev.key]();
     }

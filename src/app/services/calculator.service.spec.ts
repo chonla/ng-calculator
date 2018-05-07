@@ -73,7 +73,7 @@ describe('CalculatorService', () => {
     });
 
     it('should accept only number', () => {
-      for (var i = 0; i <= 255; i++) {
+      for (let i = 0; i <= 255; i++) {
         service.input(String.fromCharCode(i));
       }
       service.input('0');
