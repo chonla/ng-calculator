@@ -11,7 +11,18 @@ describe('CalculatorComponent', () => {
   let calculatorServiceSpy: jasmine.SpyObj<CalculatorService>;
 
   beforeEach(async(() => {
-    const spyCalculator = jasmine.createSpyObj('CalculatorService', ['input', 'setMaxLength', 'operationChanges', 'add', 'subtract', 'multiply', 'divide', 'solve', 'reset']);
+    const calculatorMethods = [
+      'input',
+      'setMaxLength',
+      'operationChanges',
+      'add',
+      'subtract',
+      'multiply',
+      'divide',
+      'solve',
+      'reset'
+    ];
+    const spyCalculator = jasmine.createSpyObj('CalculatorService', calculatorMethods);
     spyCalculator.operationChanges.and.returnValue(new Observable<string>());
 
     TestBed.configureTestingModule({
