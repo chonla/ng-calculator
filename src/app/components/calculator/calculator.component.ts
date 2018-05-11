@@ -13,6 +13,7 @@ export class CalculatorComponent implements OnInit, OnDestroy {
 
   public result: string;
   public operator: string;
+  public hasContentInMemory: boolean;
 
   constructor(private calc: CalculatorService) {
     this.calc.setMaxLength(8);
@@ -20,6 +21,7 @@ export class CalculatorComponent implements OnInit, OnDestroy {
     this.subscription$ = this.observable.subscribe(val => {
       this.result = val['result'];
       this.operator = val['operator'];
+      this.hasContentInMemory = val['memory'];
     });
   }
 
@@ -84,6 +86,22 @@ export class CalculatorComponent implements OnInit, OnDestroy {
     if (this.subscription$) {
       this.subscription$.unsubscribe();
     }
+  }
+
+  clearMemory() {
+    this.calc.clearMemory();
+  }
+
+  showMemory() {
+    this.calc.showMemory();
+  }
+
+  addMemory() {
+    this.calc.addToMemory(this.result);
+  }
+
+  subtractMemory() {
+    this.calc.subtractFromMemory(this.result);
   }
 
 }

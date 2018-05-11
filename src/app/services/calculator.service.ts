@@ -19,6 +19,7 @@ export class CalculatorService {
       'memory': false
     });
     this.max_len = 0;
+    this.memory = '0';
     this.reset();
   }
 
@@ -80,7 +81,6 @@ export class CalculatorService {
     this.operator = '';
     this.op = 0;
     this.is_error = false;
-    this.memory = '0';
     this.emitChanges();
   }
 
@@ -166,6 +166,11 @@ export class CalculatorService {
 
   addToMemory(v: string) {
     this.memory = this.evaluate(`${this.memory}+${v}`);
+    this.emitChanges();
+  }
+
+  subtractFromMemory(v: string) {
+    this.memory = this.evaluate(`${this.memory}-${v}`);
     this.emitChanges();
   }
 
