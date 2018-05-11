@@ -10,11 +10,13 @@ export class CalculatorService {
   private max_len: number;
   private is_error: boolean;
   private source: BehaviorSubject<any>;
+  private memory: string;
 
   constructor() {
     this.source = new BehaviorSubject<any>({
       'result': '0',
-      'operator': ''
+      'operator': '',
+      'memory': false
     });
     this.max_len = 0;
     this.reset();
@@ -30,7 +32,8 @@ export class CalculatorService {
   private emitChanges() {
     this.source.next({
       'result': this.operand[this.op],
-      'operator': this.operator
+      'operator': this.operator,
+      'memory': (this.memory !== '')
     });
   }
 
@@ -77,6 +80,7 @@ export class CalculatorService {
     this.operator = '';
     this.op = 0;
     this.is_error = false;
+    this.memory = '0';
     this.emitChanges();
   }
 
@@ -130,7 +134,7 @@ export class CalculatorService {
         this.emitChanges();
         return;
       }
-      result = eval(`${this.operand[0]}${this.operator}${this.operand[1]}`).toString();
+      result = this.evaluate(`${this.operand[0]}${this.operator}${this.operand[1]}`);
 
       if (this.isDecimal(result)) {
         result = this.trimResult(result);
@@ -147,6 +151,26 @@ export class CalculatorService {
       this.reset();
     }
     this.operand[0] = result;
+    this.emitChanges();
+  }
+
+  evaluate(expression: string) {
+    var result = eval(expression).toString();
+    return result;
+  }
+
+  showMemory() {
+    this.operand[this.op] = this.memory;
+    this.emitChanges();
+  }
+
+  addToMemory(v: string) {
+    this.memory = this.evaluate(`${this.memory}+${v}`);
+    this.emitChanges();
+  }
+
+  clearMemory() {
+    this.memory = '0';
     this.emitChanges();
   }
 }

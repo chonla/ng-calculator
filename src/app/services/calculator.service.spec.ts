@@ -207,6 +207,38 @@ describe('CalculatorService', () => {
     });
   });
 
+  describe('Memory', () => {
+    it('should return default value stored in memory', () => {
+      service.showMemory();
+      const result = service.value();
+      expect(result).toBe('0');
+    });
+
+    it('should add value to memory', () => {
+      service.addToMemory('123');
+      service.showMemory();
+      const result = service.value();
+      expect(result).toBe('123');
+    });
+
+    it('should sum value to memory', () => {
+      service.addToMemory('123');
+      service.addToMemory('456');
+      service.showMemory();
+      const result = service.value();
+      expect(result).toBe('579');
+    });
+
+    it('should clear memory', () => {
+      service.addToMemory('123');
+      service.addToMemory('456');
+      service.clearMemory();
+      service.showMemory();
+      const result = service.value();
+      expect(result).toBe('0');
+    });
+  });
+
   describe('Error', () => {
     it('should give divided by zero error', () => {
       service.divide();
