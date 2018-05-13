@@ -1,8 +1,8 @@
 <div class="calculator">
   <div class="display">
+    <div class="memory float-left" *ngIf="hasContentInMemory">M</div>
     {{ result }}
-    <div class="operator float-right" [innerHTML]="operator | operator">
-    </div>
+    <div class="operator float-right" [innerHTML]="operator | operator"></div>
   </div>
   <div class="row button-row">
     <div class="col-3">

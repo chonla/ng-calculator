@@ -34,7 +34,7 @@ export class CalculatorService {
     this.source.next({
       'result': this.operand[this.op],
       'operator': this.operator,
-      'memory': (this.memory !== '')
+      'memory': (this.memory !== '0')
     });
   }
 
