@@ -18,8 +18,8 @@ before_script:
 
 script:
   - npm install
-  - npm run test --code-coverage
-  - npm run build
+  - ng test --code-coverage
+  - ng build
 
 after_success:
   - codecov -t $CODECOV_TOKEN
