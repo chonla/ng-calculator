@@ -11,6 +11,8 @@ cache:
     - node_modules
 addons:
   chrome: stable
+  apt:
+    update: true
 
 before_script:
   - npm install -g firebase-tools
