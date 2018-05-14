@@ -20,7 +20,11 @@ describe('CalculatorComponent', () => {
       'multiply',
       'divide',
       'solve',
-      'reset'
+      'reset',
+      'clearMemory',
+      'showMemory',
+      'addToMemory',
+      'subtractFromMemory'
     ];
     const spyCalculator = jasmine.createSpyObj('CalculatorService', calculatorMethods);
     spyCalculator.operationChanges.and.returnValue(new Observable<string>());
@@ -86,6 +90,26 @@ describe('CalculatorComponent', () => {
   it('should call calculator service solve when solve', () => {
     component.solve();
     expect(calculatorServiceSpy.solve).toHaveBeenCalled();
+  });
+
+  it('should call show memory when mr', () => {
+    component.showMemory();
+    expect(calculatorServiceSpy.showMemory).toHaveBeenCalled();
+  });
+
+  it('should call clear memory when mc', () => {
+    component.clearMemory();
+    expect(calculatorServiceSpy.clearMemory).toHaveBeenCalled();
+  });
+
+  it('should call show memory when m+', () => {
+    component.addMemory();
+    expect(calculatorServiceSpy.addToMemory).toHaveBeenCalled();
+  });
+
+  it('should call show memory when m-', () => {
+    component.subtractMemory();
+    expect(calculatorServiceSpy.subtractFromMemory).toHaveBeenCalled();
   });
 
   it('should trigger input a number', () => {

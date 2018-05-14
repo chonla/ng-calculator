@@ -237,6 +237,15 @@ describe('CalculatorService', () => {
       const result = service.value();
       expect(result).toBe('0');
     });
+
+    it('should subtract value from memory', () => {
+      service.addToMemory('123');
+      service.subtractFromMemory('456');
+      service.showMemory();
+      const result = service.value();
+      expect(result).toBe('-333');
+    });
+
   });
 
   describe('Error', () => {
