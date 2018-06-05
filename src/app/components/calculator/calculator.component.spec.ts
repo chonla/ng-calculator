@@ -11,23 +11,23 @@ describe('CalculatorComponent', () => {
   let calculatorServiceSpy: jasmine.SpyObj<CalculatorService>;
 
   beforeEach(async(() => {
-    const calculatorMethods = [
-      'input',
-      'setMaxLength',
-      'operationChanges',
-      'add',
-      'subtract',
-      'multiply',
-      'divide',
-      'solve',
-      'reset',
-      'clearMemory',
-      'showMemory',
-      'addToMemory',
-      'subtractFromMemory'
-    ];
-    const spyCalculator = jasmine.createSpyObj('CalculatorService', calculatorMethods);
-    spyCalculator.operationChanges.and.returnValue(new Observable<string>());
+    const spyCalculator: any = {
+      'input': jest.fn(),
+      'setMaxLength': jest.fn(),
+      'operationChanges': jest.fn(),
+      'add': jest.fn(),
+      'subtract': jest.fn(),
+      'multiply': jest.fn(),
+      'divide': jest.fn(),
+      'solve': jest.fn(),
+      'reset': jest.fn(),
+      'clearMemory': jest.fn(),
+      'showMemory': jest.fn(),
+      'addToMemory': jest.fn(),
+      'subtractFromMemory': jest.fn()
+    };
+
+    spyCalculator.operationChanges.mockReturnValue(new Observable<string>());
 
     TestBed.configureTestingModule({
       declarations: [

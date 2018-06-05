@@ -9,7 +9,9 @@ describe('OperatorPipe', () => {
   }));
 
   it('should return safe html if defined', () => {
-    const domSanitizer = jasmine.createSpyObj('domSanitizer', ['bypassSecurityTrustHtml']);
+    const domSanitizer: any = {
+      'bypassSecurityTrustHtml': jest.fn()
+    };
     const pipe = new OperatorPipe(domSanitizer);
 
     const result = pipe.transform('*');
@@ -18,7 +20,9 @@ describe('OperatorPipe', () => {
   });
 
   it('should return blank if not defined', () => {
-    const domSanitizer = jasmine.createSpyObj('domSanitizer', ['bypassSecurityTrustHtml']);
+    const domSanitizer: any = {
+      'bypassSecurityTrustHtml': jest.fn()
+    };
     const pipe = new OperatorPipe(domSanitizer);
 
     const result = pipe.transform('<');
